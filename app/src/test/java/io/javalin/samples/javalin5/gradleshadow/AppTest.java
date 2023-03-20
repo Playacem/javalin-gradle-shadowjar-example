@@ -3,12 +3,19 @@
  */
 package io.javalin.samples.javalin5.gradleshadow;
 
+import io.javalin.testtools.JavalinTest;
+import okhttp3.ResponseBody;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
     @Test void appHasAGreeting() {
         App classUnderTest = new App();
-        assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+        JavalinTest.test(classUnderTest.javalin, (a, http) -> {
+            try (ResponseBody body = http.get("/").body()) {
+                assertNotNull(body);
+                assertEquals("Root", body.string());
+            }
+        });
     }
 }

@@ -9,6 +9,7 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     application
+    id("com.github.johnrengelman.shadow") version "8.1.0"
 }
 
 repositories {
@@ -19,14 +20,22 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("io.javalin:javalin-testtools:5.4.2")
 
     // This dependency is used by the application.
-    implementation("com.google.guava:guava:31.1-jre")
+    implementation("io.javalin:javalin:5.4.2")
+    implementation("org.slf4j:slf4j-simple:2.0.6")
 }
 
 application {
     // Define the main class for the application.
     mainClass.set("io.javalin.samples.javalin5.gradleshadow.App")
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
 tasks.named<Test>("test") {

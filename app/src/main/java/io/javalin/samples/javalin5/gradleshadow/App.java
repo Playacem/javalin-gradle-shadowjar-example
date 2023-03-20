@@ -3,12 +3,13 @@
  */
 package io.javalin.samples.javalin5.gradleshadow;
 
+import io.javalin.Javalin;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
+    Javalin javalin = Javalin.create()
+            .get("/", ctx -> ctx.result("Root"));
 
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+        new App().javalin.start(8080);
     }
 }
