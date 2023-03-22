@@ -1,5 +1,8 @@
 # Javalin Gradle ShadowJar Example
 
+**This example has been moved to the official [javalin/javalin-samples repo](https://github.com/javalin/javalin-samples).
+This repository will be archived.**
+
 This project demonstrates how to create a shadow jar, also known as fat jar or uber jar with the Javalin library as an example.
 
 ## Requirements
